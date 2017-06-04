@@ -21,7 +21,7 @@
                                 <rect key="frame" x="20" y="40" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <accessibility key="accessibilityConfiguration" identifier="NewCounterName"/>
+                                <accessibility key="accessibilityConfiguration" identifier="new_counter_name"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

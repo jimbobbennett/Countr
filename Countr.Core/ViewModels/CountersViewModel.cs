@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Countr.Core.Models;
 using Countr.Core.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using MvvmCross.Core.Navigation;
 
 namespace Countr.Core.ViewModels
 {
@@ -12,13 +12,15 @@ namespace Countr.Core.ViewModels
     {
         readonly ICountersService service;
         readonly MvxSubscriptionToken token;
+        readonly IMvxNavigationService navigationService;
 
-        public CountersViewModel(ICountersService service, IMvxMessenger messenger)
+        public CountersViewModel(ICountersService service, IMvxMessenger messenger, IMvxNavigationService navigationService)
         {
+            this.navigationService = navigationService;
             this.service = service;
             Counters = new ObservableCollection<CounterViewModel>();
             token = messenger.SubscribeOnMainThread<CountersChangedMessage>(async m => await LoadCounters());
-            ShowAddNewCounterCommand = new MvxCommand(ShowAddNewCounter);
+            ShowAddNewCounterCommand = new MvxAsyncCommand(ShowAddNewCounter);
         }
 
         public ObservableCollection<CounterViewModel> Counters { get; }
@@ -35,17 +37,17 @@ namespace Countr.Core.ViewModels
 
             foreach (var counter in await service.GetAllCounters())
             {
-                var viewModel = new CounterViewModel(service);
-                viewModel.Init(counter);
+                var viewModel = new CounterViewModel(service, navigationService);
+                await viewModel.Initialize(counter);
                 Counters.Add(viewModel);
             }
         }
 
-        public ICommand ShowAddNewCounterCommand { get; }
+        public IMvxAsyncCommand ShowAddNewCounterCommand { get; }
 
-        void ShowAddNewCounter()
+        async Task ShowAddNewCounter()
         {
-            ShowViewModel<CounterViewModel>(new Counter());
+            await navigationService.Navigate<CounterViewModel, Counter>(new Counter());
         }
     }
 }
