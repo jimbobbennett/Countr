@@ -22,7 +22,7 @@ namespace Countr.iOS.Views
 
             var button = new UIBarButtonItem(UIBarButtonSystemItem.Add);
             NavigationItem.SetRightBarButtonItem(button, false);
-            button.AccessibilityIdentifier = "AddCounterButton";
+            button.AccessibilityIdentifier = "add_counter_button";
 
             var set = this.CreateBindingSet<CountersView, CountersViewModel>();
             set.Bind(source).To(vm => vm.Counters);

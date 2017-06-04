@@ -23,7 +23,7 @@
             local:MvxBind="ItemsSource Counters"
             local:MvxItemTemplate="@layout/counter_recycler_view" />
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/AddCounterButton"
+            android:id="@+id/add_counter_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"

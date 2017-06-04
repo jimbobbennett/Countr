@@ -1,8 +1,12 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using Foundation;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
-using Foundation;
 using UIKit;
+using Microsoft.Azure.Mobile.Distribute;
 
 namespace Countr.iOS
 {
@@ -17,6 +21,11 @@ namespace Countr.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            MobileCenter.Start("cf71392c-61fb-4208-af4c-68d7e8a15c33",
+                               typeof(Analytics),
+                               typeof(Crashes),
+                               typeof(Distribute));
+
 #if DEBUG
             Xamarin.Calabash.Start();
 #endif 

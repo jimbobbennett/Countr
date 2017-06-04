@@ -33,14 +33,14 @@ namespace Countr.UITests
          // Arrange
          // Act
          app.Screenshot("First screen.");
-         app.Tap(c => c.Id("AddCounterButton"));
+         app.Tap(c => c.Id("add_counter_button"));
          app.Screenshot("About to enter text");
-         app.EnterText(c => c.Id("NewCounterName"), "My Counter");
+         app.EnterText(c => c.Id("new_counter_name"), "My Counter");
          app.Tap(c => c.Text("Done"));
          // Assert
          app.Screenshot("Counter added");
-         app.WaitForElement(c => c.Id("CounterName").Text("My Counter"));
-         app.WaitForElement(c => c.Id("CounterCount").Text("0"));
+         app.WaitForElement(c => c.Id("counter_name").Text("My Counter"));
+         app.WaitForElement(c => c.Id("counter_count").Text("0"));
       }
 
       [Test]
@@ -48,16 +48,16 @@ namespace Countr.UITests
       {
          // Arrange
          app.Screenshot("First screen.");
-         app.Tap(c => c.Id("AddCounterButton"));
+         app.Tap(c => c.Id("add_counter_button"));
          app.Screenshot("About to enter text");
-         app.EnterText(c => c.Id("NewCounterName"), "My Counter");
+         app.EnterText(c => c.Id("new_counter_name"), "My Counter");
          app.Tap(c => c.Text("Done"));
          app.Screenshot("Counter added");
          // Act
          app.Tap(c => c.Id("add_image"));
          app.Screenshot("Counter incremented");
          // Assert
-         app.WaitForElement(c => c.Id("CounterCount").Text("1"));
+         app.WaitForElement(c => c.Id("counter_count").Text("1"));
       }
    }
 }

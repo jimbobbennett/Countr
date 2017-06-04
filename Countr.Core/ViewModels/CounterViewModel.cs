@@ -1,29 +1,32 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Countr.Core.Models;
 using Countr.Core.Services;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins;
+using MvvmCross.Core.Navigation;
 
 namespace Countr.Core.ViewModels
 {
-    public class CounterViewModel : MvxViewModel
+    public class CounterViewModel : MvxViewModel<Counter>
     {
         Counter counter;
         readonly ICountersService service;
+        readonly IMvxNavigationService navigationService;
 
-        public CounterViewModel(ICountersService service)
+        public CounterViewModel(ICountersService service, IMvxNavigationService navigationService)
         {
+            this.navigationService = navigationService;
             this.service = service;
             IncrementCommand = new MvxAsyncCommand(IncrementCounter);
             DeleteCommand = new MvxAsyncCommand(DeleteCounter);
-            CancelCommand = new MvxCommand(Cancel);
+            CancelCommand = new MvxAsyncCommand(Cancel);
             SaveCommand = new MvxAsyncCommand(Save);
         }
 
         public IMvxAsyncCommand IncrementCommand { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
-        public ICommand CancelCommand { get; }
+        public IMvxAsyncCommand CancelCommand { get; }
         public IMvxAsyncCommand SaveCommand { get; }
 
         async Task IncrementCounter()
@@ -37,20 +40,20 @@ namespace Countr.Core.ViewModels
             await service.DeleteCounter(counter);
         }
 
-        void Cancel()
+        async Task Cancel()
         {
-            Close(this);
+            await navigationService.Close(this);
         }
 
         async Task Save()
         {
             await service.AddNewCounter(counter.Name);
-            Close(this);
+            await navigationService.Close(this);
         }
 
-        public void Init(Counter counter)
+        public override async Task Initialize(Counter parameter)
         {
-            this.counter = counter;
+            counter = parameter;
         }
 
         public string Name
@@ -62,6 +65,11 @@ namespace Countr.Core.ViewModels
                 counter.Name = value;
                 RaisePropertyChanged();
             }
+        }
+
+        public override void Start()
+        {
+            base.Start();
         }
 
         public int Count => counter.Count;
