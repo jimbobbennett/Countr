@@ -28,8 +28,8 @@ namespace Countr.Droid
 
             MobileCenter.Start("50855f68-c77e-4043-b353-116a0c9c45c3",
                                typeof(Analytics), 
-                               typeof(Crashes)/*,
-                               typeof(Distribute)*/);
+                               typeof(Crashes),
+                               typeof(Distribute));
         }
     }
 }

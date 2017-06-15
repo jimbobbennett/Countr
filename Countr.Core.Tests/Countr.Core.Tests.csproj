@@ -29,38 +29,38 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.7.10\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\packages\Moq.4.7.25\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Platform">
-      <HintPath>..\packages\MvvmCross.Platform.5.0.1\lib\net45\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.5.0.2\lib\net45\MvvmCross.Platform.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Platform.Wpf">
-      <HintPath>..\packages\MvvmCross.Platform.5.0.1\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.5.0.2\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Core">
-      <HintPath>..\packages\MvvmCross.Core.5.0.1\lib\net45\MvvmCross.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.5.0.2\lib\net45\MvvmCross.Core.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Wpf">
-      <HintPath>..\packages\MvvmCross.Core.5.0.1\lib\net45\MvvmCross.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.5.0.2\lib\net45\MvvmCross.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Binding">
-      <HintPath>..\packages\MvvmCross.Binding.5.0.1\lib\net45\MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.5.0.2\lib\net45\MvvmCross.Binding.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Binding.Wpf">
-      <HintPath>..\packages\MvvmCross.Binding.5.0.1\lib\net45\MvvmCross.Binding.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.5.0.2\lib\net45\MvvmCross.Binding.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Localization">
-      <HintPath>..\packages\MvvmCross.Binding.5.0.1\lib\net45\MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.5.0.2\lib\net45\MvvmCross.Localization.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger">
-      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.0.1\lib\net45\MvvmCross.Plugins.Messenger.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.0.2\lib\net45\MvvmCross.Plugins.Messenger.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Test.Core">
-      <HintPath>..\packages\MvvmCross.Tests.5.0.1\lib\portable45-net45+win8+wp8+wpa81\MvvmCross.Test.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Tests.5.0.2\lib\portable45-net45+win8+wp8+wpa81\MvvmCross.Test.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
