@@ -4,20 +4,23 @@ using Countr.Core.Models;
 using Moq;
 using Countr.Core.Services;
 using System.Threading.Tasks;
+using MvvmCross.Core.Navigation;
 
 namespace Countr.Core.Tests.ViewModels
 {
     [TestFixture]
     public class CounterViewModelTests
     {
-        private CounterViewModel viewModel;
-        private Mock<ICountersService> mockCountersService;
+        CounterViewModel viewModel;
+        Mock<ICountersService> mockCountersService;
+        Mock<IMvxNavigationService> mockNavigationService;
 
         [SetUp]
         public void SetUp()
         {
             mockCountersService = new Mock<ICountersService>();
-            viewModel = new CounterViewModel(mockCountersService.Object);
+            mockNavigationService = new Mock<IMvxNavigationService>();
+            viewModel = new CounterViewModel(mockCountersService.Object, mockNavigationService.Object);
             viewModel.ShouldAlwaysRaiseInpcOnUserInterfaceThread(false);
         }
 
@@ -48,39 +51,39 @@ namespace Countr.Core.Tests.ViewModels
         }
 
         [Test]
-        public void Name_ComesFromCounter()
+        public async Task Name_ComesFromCounter()
         {
             // Arrange
             var counter = new Counter { Name = "A Counter" };
 
             // Act
-            viewModel.Init(counter);
+            await viewModel.Initialize(counter);
 
             // Assert
             Assert.AreEqual(counter.Name, viewModel.Name);
         }
 
         [Test]
-        public void Count_ComesFromCounter()
+        public async Task Count_ComesFromCounter()
         {
             // Arrange
             var counter = new Counter { Count = 4 };
 
             // Act
-            viewModel.Init(counter);
+            await viewModel.Initialize(counter);
 
             // Assert
             Assert.AreEqual(counter.Count, viewModel.Count);
         }
 
         [Test]
-        public void SettingName_RaisesPropertyChanged()
+        public async Task SettingName_RaisesPropertyChanged()
         {
             // Arrange
             var propertyChangedRaised = false;
             viewModel.PropertyChanged +=
                (s, e) => propertyChangedRaised = (e.PropertyName == "Name");
-            viewModel.Init(new Counter());
+            await viewModel.Initialize(new Counter());
 
             // Act
             viewModel.Name = "A Counter";
@@ -90,17 +93,47 @@ namespace Countr.Core.Tests.ViewModels
         }
 
         [Test]
-        public void DeleteCommand_DeletesTheCounter()
+        public async Task DeleteCommand_DeletesTheCounter()
         {
             // Arrange
             var counter = new Counter { Name = "A Counter" };
-            viewModel.Init(counter);
+            await viewModel.Initialize(counter);
 
             // Act
-            viewModel.DeleteCommand.Execute();
+            await viewModel.DeleteCommand.ExecuteAsync();
 
             // Assert
             mockCountersService.Verify(c => c.DeleteCounter(counter));
+        }
+
+        [Test]
+        public async Task SaveCommand_SavesTheCounter()
+        {
+            // Arrange
+            var counter = new Counter { Name = "A Counter" };
+            await viewModel.Initialize(counter);
+
+            // Act
+            await viewModel.SaveCommand.ExecuteAsync();
+
+            // Assert
+            mockCountersService.Verify(c => c.AddNewCounter("A Counter"));
+            mockNavigationService.Verify(n => n.Close(viewModel));
+        }
+
+        [Test]
+        public async Task CancelCommand_DoesntSaveTheCounter()
+        {
+            // Arrange
+            var counter = new Counter { Name = "A Counter" };
+            await viewModel.Initialize(counter);
+
+            // Act
+            await viewModel.CancelCommand.ExecuteAsync();
+
+            // Assert
+            mockCountersService.Verify(c => c.AddNewCounter(It.IsAny<string>()), Times.Never());
+            mockNavigationService.Verify(n => n.Close(viewModel));
         }
     }
 }
