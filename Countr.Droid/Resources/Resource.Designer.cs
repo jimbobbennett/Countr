@@ -32,6 +32,7 @@ namespace Countr.Droid
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_install = global::Countr.Droid.Resource.String.mobile_center_distribute_install;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_install_ready_message = global::Countr.Droid.Resource.String.mobile_center_distribute_install_ready_message;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_install_ready_title = global::Countr.Droid.Resource.String.mobile_center_distribute_install_ready_title;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_notification_category = global::Countr.Droid.Resource.String.mobile_center_distribute_notification_category;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_unknown_sources_dialog_message = global::Countr.Droid.Resource.String.mobile_center_distribute_unknown_sources_dialog_message;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_unknown_sources_dialog_settings = global::Countr.Droid.Resource.String.mobile_center_distribute_unknown_sources_dialog_settings;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_download = global::Countr.Droid.Resource.String.mobile_center_distribute_update_dialog_download;
@@ -4546,8 +4547,8 @@ namespace Countr.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f08003a
-			public const int AddNewCounterName = 2131230778;
+			// aapt resource value: 0x7f08003b
+			public const int AddNewCounterName = 2131230779;
 			
 			// aapt resource value: 0x7f080001
 			public const int ApplicationName = 2131230721;
@@ -4555,8 +4556,8 @@ namespace Countr.Droid
 			// aapt resource value: 0x7f080000
 			public const int Hello = 2131230720;
 			
-			// aapt resource value: 0x7f080039
-			public const int VersionName = 2131230777;
+			// aapt resource value: 0x7f08003a
+			public const int VersionName = 2131230778;
 			
 			// aapt resource value: 0x7f080002
 			public const int abc_action_bar_home_description = 2131230722;
@@ -4679,28 +4680,31 @@ namespace Countr.Droid
 			public const int mobile_center_distribute_install_ready_title = 2131230768;
 			
 			// aapt resource value: 0x7f080031
-			public const int mobile_center_distribute_unknown_sources_dialog_message = 2131230769;
+			public const int mobile_center_distribute_notification_category = 2131230769;
 			
 			// aapt resource value: 0x7f080032
-			public const int mobile_center_distribute_unknown_sources_dialog_settings = 2131230770;
+			public const int mobile_center_distribute_unknown_sources_dialog_message = 2131230770;
 			
 			// aapt resource value: 0x7f080033
-			public const int mobile_center_distribute_update_dialog_download = 2131230771;
+			public const int mobile_center_distribute_unknown_sources_dialog_settings = 2131230771;
 			
 			// aapt resource value: 0x7f080034
-			public const int mobile_center_distribute_update_dialog_message_mandatory = 2131230772;
+			public const int mobile_center_distribute_update_dialog_download = 2131230772;
 			
 			// aapt resource value: 0x7f080035
-			public const int mobile_center_distribute_update_dialog_message_optional = 2131230773;
+			public const int mobile_center_distribute_update_dialog_message_mandatory = 2131230773;
 			
 			// aapt resource value: 0x7f080036
-			public const int mobile_center_distribute_update_dialog_postpone = 2131230774;
+			public const int mobile_center_distribute_update_dialog_message_optional = 2131230774;
 			
 			// aapt resource value: 0x7f080037
-			public const int mobile_center_distribute_update_dialog_title = 2131230775;
+			public const int mobile_center_distribute_update_dialog_postpone = 2131230775;
 			
 			// aapt resource value: 0x7f080038
-			public const int mobile_center_distribute_update_dialog_view_release_notes = 2131230776;
+			public const int mobile_center_distribute_update_dialog_title = 2131230776;
+			
+			// aapt resource value: 0x7f080039
+			public const int mobile_center_distribute_update_dialog_view_release_notes = 2131230777;
 			
 			// aapt resource value: 0x7f080026
 			public const int password_toggle_content_description = 2131230758;
