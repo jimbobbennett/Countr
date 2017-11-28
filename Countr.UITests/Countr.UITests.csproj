@@ -30,7 +30,8 @@
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.UITest">
-      <HintPath>..\packages\Xamarin.UITest.2.0.9\lib\Xamarin.UITest.dll</HintPath>
+      <HintPath>..\packages\Xamarin.UITest.2.1.3\lib\net45\Xamarin.UITest.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -42,13 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Countr.Droid\Countr.Droid.csproj">
-      <Project>{649E09FE-8893-42BE-B68C-B41866BCB495}</Project>
+      <Project>{21401325-08EA-4F93-8FCD-C8BB676643C2}</Project>
       <Name>Countr.Droid</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Countr.iOS\Countr.iOS.csproj">
-      <Project>{34DE7EFD-A7B9-4FC5-BCF3-5D01A961F116}</Project>
+      <Project>{D74D7352-F8CC-4BFF-829C-5BBDF06C70D6}</Project>
       <Name>Countr.iOS</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>

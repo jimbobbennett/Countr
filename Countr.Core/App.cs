@@ -1,4 +1,4 @@
-﻿using MvvmCross.Platform.IoC;
+using MvvmCross.Platform.IoC;
 
 namespace Countr.Core
 {
@@ -12,11 +12,11 @@ namespace Countr.Core
                 .RegisterAsLazySingleton();
 
             CreatableTypes()
-			    .EndingWith("Repository")
-			    .AsInterfaces()
-			    .RegisterAsLazySingleton();
+                .EndingWith("Repository")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.CountersViewModel>();
+            RegisterNavigationServiceAppStart<ViewModels.CountersViewModel>();
         }
     }
 }

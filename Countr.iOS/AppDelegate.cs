@@ -1,12 +1,12 @@
 ﻿using Foundation;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
 using UIKit;
-using Microsoft.Azure.Mobile.Distribute;
 
 namespace Countr.iOS
 {
@@ -21,20 +21,14 @@ namespace Countr.iOS
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            MobileCenter.Start("cf71392c-61fb-4208-af4c-68d7e8a15c33",
-                               typeof(Analytics),
-                               typeof(Crashes),
-                               typeof(Distribute));
-
 #if DEBUG
             Xamarin.Calabash.Start();
-#endif 
+#endif
 
-            UINavigationBar.Appearance.BarTintColor = UIColor.Orange;
-            UINavigationBar.Appearance.TintColor = UIColor.DarkGray;
-            UINavigationBar.Appearance.TitleTextAttributes =
-               new UIStringAttributes(new NSDictionary(UIStringAttributeKey.ForegroundColor,
-                                                       UIColor.DarkGray));
+            AppCenter.Start("<your app secret>",
+                            typeof(Analytics),
+                            typeof(Crashes),
+                            typeof(Distribute));
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 

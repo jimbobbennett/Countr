@@ -16,22 +16,22 @@ namespace Countr.Core.Repositories
             var local = FileSystem.Current.LocalStorage.Path;
             var datafile = Path.Combine(local, "counters.db3");
             connection = new SQLiteAsyncConnection(datafile);
-            connection.CreateTableAsync<Counter>().Wait();
+            connection.GetConnection().CreateTable<Counter>();
         }
 
-        public async Task Save(Counter counter)
+        public Task Save(Counter counter)
         {
-            await connection.InsertOrReplaceAsync(counter);
+            return connection.InsertOrReplaceAsync(counter);
         }
 
-        public async Task<IEnumerable<Counter>> GetAll()
+        public Task<List<Counter>> GetAll()
         {
-            return await connection.Table<Counter>().ToListAsync();
+            return connection.Table<Counter>().ToListAsync();
         }
 
-        public async Task Delete(Counter counter)
+        public Task Delete(Counter counter)
         {
-            await connection.DeleteAsync(counter);
+            return connection.DeleteAsync(counter);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Countr.UITests
             return ConfigureApp
                .Android
                .EnableLocalScreenshots()
-               .ApkFile("../../../Countr.Droid/bin/Release/io.jimbobbennett.Countr-Signed.apk")
+               .ApkFile("../../../Countr.Droid/bin/Release/com.companyname.Countr-Signed.apk")
                .StartApp();
          }
 
