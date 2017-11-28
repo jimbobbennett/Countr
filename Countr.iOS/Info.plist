@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Countr</string>
+	<string>Countr.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>io.jimbobbennett.Countr</string>
+	<string>com.companyname.Countr.iOS</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>9.0</string>
+	<string></string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -33,30 +33,24 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>Countr.iOS</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>CFBundleName</key>
-	<string>Countr</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>mobilecenter-cf71392c-61fb-4208-af4c-68d7e8a15c33</string>
+				<string>appcenter-cf71392c-61fb-4208-af4c-68d7e8a15c33</string>
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>CFBundleTypeName</string>
-		</dict>
-	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 </dict>
 </plist>

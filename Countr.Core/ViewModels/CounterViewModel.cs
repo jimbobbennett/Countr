@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Threading.Tasks;
 using Countr.Core.Models;
 using Countr.Core.Services;
-using MvvmCross.Core.ViewModels;
 using MvvmCross.Core.Navigation;
+using MvvmCross.Core.ViewModels;
 
 namespace Countr.Core.ViewModels
 {
@@ -16,8 +14,8 @@ namespace Countr.Core.ViewModels
 
         public CounterViewModel(ICountersService service, IMvxNavigationService navigationService)
         {
-            this.navigationService = navigationService;
             this.service = service;
+            this.navigationService = navigationService;
             IncrementCommand = new MvxAsyncCommand(IncrementCounter);
             DeleteCommand = new MvxAsyncCommand(DeleteCounter);
             CancelCommand = new MvxAsyncCommand(Cancel);
@@ -25,9 +23,6 @@ namespace Countr.Core.ViewModels
         }
 
         public IMvxAsyncCommand IncrementCommand { get; }
-        public IMvxAsyncCommand DeleteCommand { get; }
-        public IMvxAsyncCommand CancelCommand { get; }
-        public IMvxAsyncCommand SaveCommand { get; }
 
         async Task IncrementCounter()
         {
@@ -35,25 +30,16 @@ namespace Countr.Core.ViewModels
             RaisePropertyChanged(() => Count);
         }
 
+        public IMvxAsyncCommand DeleteCommand { get; }
+
         async Task DeleteCounter()
         {
             await service.DeleteCounter(counter);
         }
 
-        async Task Cancel()
+        public override void Prepare(Counter counter)
         {
-            await navigationService.Close(this);
-        }
-
-        async Task Save()
-        {
-            await service.AddNewCounter(counter.Name);
-            await navigationService.Close(this);
-        }
-
-        public override async Task Initialize(Counter parameter)
-        {
-            counter = parameter;
+            this.counter = counter;
         }
 
         public string Name
@@ -67,11 +53,20 @@ namespace Countr.Core.ViewModels
             }
         }
 
-        public override void Start()
+        public int Count => counter.Count;
+
+        public IMvxAsyncCommand CancelCommand { get; }
+        public IMvxAsyncCommand SaveCommand { get; }
+
+        async Task Cancel()
         {
-            base.Start();
+            await navigationService.Close(this);                            
         }
 
-        public int Count => counter.Count;
+        async Task Save()
+        {
+            await service.AddNewCounter(counter.Name);                      
+            await navigationService.Close(this);                            
+        }
     }
 }

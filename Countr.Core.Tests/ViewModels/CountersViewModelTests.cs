@@ -1,52 +1,37 @@
-﻿using Countr.Core.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Countr.Core.Models;
+using Countr.Core.Services;
 using Countr.Core.ViewModels;
 using Moq;
-using NUnit.Framework;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Countr.Core.Models;
-using MvvmCross.Plugins.Messenger;
-using System;
 using MvvmCross.Core.Navigation;
+using MvvmCross.Plugins.Messenger;
+using NUnit.Framework;
 
 namespace Countr.Core.Tests.ViewModels
 {
     [TestFixture]
     public class CountersViewModelTests
     {
-        Mock<ICountersService> mockCountersService;
-        Mock<IMvxNavigationService> mockNavigationService;
-        CountersViewModel viewModel;
+        Mock<ICountersService> countersService;
         Mock<IMvxMessenger> messenger;
+        Mock<IMvxNavigationService> navigationService;
         Action<CountersChangedMessage> publishAction;
+        CountersViewModel viewModel;
 
         [SetUp]
         public void SetUp()
         {
-            mockCountersService = new Mock<ICountersService>();
-            mockNavigationService = new Mock<IMvxNavigationService>();
+            countersService = new Mock<ICountersService>();
             messenger = new Mock<IMvxMessenger>();
-            messenger.Setup(m => m.SubscribeOnMainThread
-                             (It.IsAny<Action<CountersChangedMessage>>(),
-                              It.IsAny<MvxReference>(),
-                              It.IsAny<string>()))
-                      .Callback<Action<CountersChangedMessage>,
-                                MvxReference,
-                                string>((a, m, s) => publishAction = a);
+            messenger.Setup(m => m.SubscribeOnMainThread(It.IsAny<Action<CountersChangedMessage>>(),
+                                                         It.IsAny<MvxReference>(),
+                                                         It.IsAny<string>()))
+                     .Callback<Action<CountersChangedMessage>, MvxReference, string>((a, m, s) => publishAction = a);
+            navigationService = new Mock<IMvxNavigationService>();
 
-            viewModel = new CountersViewModel(mockCountersService.Object,
-                                              messenger.Object,
-                                              mockNavigationService.Object);
-        }
-
-        [Test]
-        public void ReceivedMessage_LoadsCounters()
-        {
-            // Act
-            publishAction.Invoke(new CountersChangedMessage(this));
-
-            // Assert
-            mockCountersService.Verify(s => s.GetAllCounters());
+            viewModel = new CountersViewModel(countersService.Object, messenger.Object, navigationService.Object);
         }
 
         [Test]
@@ -58,12 +43,10 @@ namespace Countr.Core.Tests.ViewModels
                 new Counter{Name = "Counter1", Count=0},
                 new Counter{Name = "Counter2", Count=4},
             };
-            mockCountersService.Setup(c => c.GetAllCounters())
-                                .ReturnsAsync(counters);
-
+            countersService.Setup(c => c.GetAllCounters())
+                           .ReturnsAsync(counters);
             // Act
             await viewModel.LoadCounters();
-
             // Assert
             Assert.AreEqual(2, viewModel.Counters.Count);
             Assert.AreEqual("Counter1", viewModel.Counters[0].Name);
@@ -73,13 +56,25 @@ namespace Countr.Core.Tests.ViewModels
         }
 
         [Test]
-        public async Task ShowAddNewCounterCommand_ShowsCounterVieModel()
+        public void ReceivedMessage_LoadsCounters()
         {
+            // Arrange
+            countersService.Setup(s => s.GetAllCounters()).ReturnsAsync(new List<Counter>());
             // Act
-            await viewModel.ShowAddNewCounterCommand.ExecuteAsync();
-
+            publishAction.Invoke(new CountersChangedMessage(this));
             // Assert
-            mockNavigationService.Verify(n => n.Navigate<CounterViewModel, Counter>(It.IsAny<Counter>(), null));
+            countersService.Verify(s => s.GetAllCounters());
+        }
+
+        [Test]
+        public async Task ShowAddNewCounterCommand_ShowsCounterViewModel()
+        {
+            // Act                                                             
+            await viewModel.ShowAddNewCounterCommand.ExecuteAsync();
+            // Assert                                                          
+            navigationService.Verify(n => n.Navigate(typeof(CounterViewModel),
+                                                     It.IsAny<Counter>(),
+                                                     null));
         }
     }
 }

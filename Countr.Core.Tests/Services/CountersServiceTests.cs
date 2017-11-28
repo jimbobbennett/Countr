@@ -1,20 +1,20 @@
-﻿using NUnit.Framework;
-using Moq;
-using Countr.Core.Repositories;
-using Countr.Core.Services;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Countr.Core.Models;
-using System.Collections.Generic;
+using Countr.Core.Repositories;
+using Countr.Core.Services;
+using Moq;
 using MvvmCross.Plugins.Messenger;
+using NUnit.Framework;
 
 namespace Countr.Core.Tests.Services
 {
     [TestFixture]
     public class CountersServiceTests
     {
-        ICountersService service;
         Mock<ICountersRepository> repo;
         Mock<IMvxMessenger> messenger;
+        ICountersService service;
 
         [SetUp]
         public void SetUp()

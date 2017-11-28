@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 using Countr.Core.Models;
 using Countr.Core.Services;
+using Microsoft.AppCenter.Analytics;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
-using MvvmCross.Core.Navigation;
 
 namespace Countr.Core.ViewModels
 {
@@ -16,38 +17,37 @@ namespace Countr.Core.ViewModels
 
         public CountersViewModel(ICountersService service, IMvxMessenger messenger, IMvxNavigationService navigationService)
         {
-            this.navigationService = navigationService;
             this.service = service;
-            Counters = new ObservableCollection<CounterViewModel>();
+            this.navigationService = navigationService;
             token = messenger.SubscribeOnMainThread<CountersChangedMessage>(async m => await LoadCounters());
+            Counters = new ObservableCollection<CounterViewModel>();
             ShowAddNewCounterCommand = new MvxAsyncCommand(ShowAddNewCounter);
         }
 
         public ObservableCollection<CounterViewModel> Counters { get; }
 
-        public override async void Start()
+        public override async Task Initialize()
         {
-            base.Start();
             await LoadCounters();
         }
 
         public async Task LoadCounters()
         {
             Counters.Clear();
-
-            foreach (var counter in await service.GetAllCounters())
+            var counters = await service.GetAllCounters();
+            foreach (var counter in counters)
             {
                 var viewModel = new CounterViewModel(service, navigationService);
-                await viewModel.Initialize(counter);
+                viewModel.Prepare(counter);
                 Counters.Add(viewModel);
             }
         }
-
         public IMvxAsyncCommand ShowAddNewCounterCommand { get; }
 
         async Task ShowAddNewCounter()
         {
-            await navigationService.Navigate<CounterViewModel, Counter>(new Counter());
+            Analytics.TrackEvent("Show add new counter");
+            await navigationService.Navigate(typeof(CounterViewModel), new Counter());
         }
     }
 }

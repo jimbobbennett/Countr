@@ -1,10 +1,10 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content.PM;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 using MvvmCross.Droid.Views;
-using Microsoft.Azure.Mobile.Distribute;
 
 namespace Countr.Droid
 {
@@ -26,10 +26,10 @@ namespace Countr.Droid
         {
             base.OnCreate(bundle);
 
-            MobileCenter.Start("50855f68-c77e-4043-b353-116a0c9c45c3",
-                               typeof(Analytics), 
-                               typeof(Crashes),
-                               typeof(Distribute));
+            AppCenter.Start("<your app secret>",
+                            typeof(Analytics),
+                            typeof(Crashes),
+                            typeof(Distribute));
         }
     }
 }

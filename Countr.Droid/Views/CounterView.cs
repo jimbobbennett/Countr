@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Support.V7.Widget;
 using Countr.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
@@ -18,15 +18,8 @@ namespace Countr.Droid.Views
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-        }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            base.OnCreateOptionsMenu(menu);
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            toolbar.InflateMenu(Resource.Menu.new_counter_menu);
-            return true;
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -42,6 +35,14 @@ namespace Countr.Droid.Views
                 default:
                     return base.OnOptionsItemSelected(item);
             }
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            base.OnCreateOptionsMenu(menu);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            toolbar.InflateMenu(Resource.Menu.new_counter_menu);
+            return true;
         }
     }
 }

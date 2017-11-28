@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using Countr.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
@@ -21,8 +21,8 @@ namespace Countr.iOS.Views
             TableView.Source = source;
 
             var button = new UIBarButtonItem(UIBarButtonSystemItem.Add);
-            NavigationItem.SetRightBarButtonItem(button, false);
             button.AccessibilityIdentifier = "add_counter_button";
+            NavigationItem.SetRightBarButtonItem(button, false);
 
             var set = this.CreateBindingSet<CountersView, CountersViewModel>();
             set.Bind(source).To(vm => vm.Counters);
