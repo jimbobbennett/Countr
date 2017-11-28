@@ -25,7 +25,7 @@ namespace Countr.iOS
             Xamarin.Calabash.Start();
 #endif
 
-            AppCenter.Start("<your app secret>",
+            AppCenter.Start("734cb588-60dc-4758-a2a7-5db7f72b67f0",
                             typeof(Analytics),
                             typeof(Crashes),
                             typeof(Distribute));
