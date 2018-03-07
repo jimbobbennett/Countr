@@ -252,3 +252,4 @@ paket-files/
 *.sln.iml
 
 *.db
+.DS_Store
