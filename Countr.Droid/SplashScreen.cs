@@ -28,8 +28,8 @@ namespace Countr.Droid
 
             AppCenter.Start("3de451f4-50bc-4db7-9a96-5032966ecd6a",
                             typeof(Analytics),
-                            typeof(Crashes)/*,
-                            typeof(Distribute)*/);
+                            typeof(Crashes),
+                            typeof(Distribute));
         }
     }
 }
