@@ -47,7 +47,6 @@ namespace Countr.Core.ViewModels
 
         async Task ShowAddNewCounter()
         {
-            throw new System.ArgumentException("Argument");
             Analytics.TrackEvent("Show add new counter");
             await navigationService.Navigate(typeof(CounterViewModel), new Counter());
         }
